@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  title: Champions League
+  version: 0.0.1
+  description: 'Torneio da Champions League'
+  contact: 
+    name: inf25dw1g05
+    email: my.student.email@intitution.country #Mudar para o email comum ao grupo no docker hub
+
+servers:
+  - url: http://localhost:8080
+    description: Champions League
+    variables:
+      basePath:
+        default: /Groups
