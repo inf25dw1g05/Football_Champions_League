@@ -5,7 +5,7 @@ info:
   description: 'Torneio da Champions League'
   contact: 
     name: inf25dw1g05
-    email: my.student.email@intitution.country #Mudar para o email comum ao grupo no docker hub
+    email: inf25dw1g05@gmail.com
 
 servers:
   - url: http://localhost:8080
@@ -13,3 +13,81 @@ servers:
     variables:
       basePath:
         default: /Groups
+components: 
+  schemas:
+    Team:
+      title: Team
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country:
+          type: string
+        coach:
+          type: string
+        group:
+          type: string
+      required: 
+        - name
+        - country
+        - coach
+        - group
+      additionalProperties: false
+
+    Player:
+      title: Player
+      type: object
+      properties:
+        player_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        team_id:
+          type: integer
+          format: int64
+      required:
+        - name
+        - position
+        - nationality
+        - team_id
+      additionalProperties: false
+    
+    Match:
+      title: Match
+      type: object
+      properties:
+        match_id:
+          type: integer
+          format: int64
+        home_team_id:
+          type: integer
+          format: int64
+        away_team_id:
+          type: integer
+          format: int64
+        match_date:
+          type: string
+          format: date
+        venue:
+          type: string
+        home_score:
+          type: integer
+          default: 0
+          minimum: 0
+        away_score:
+          type: integer
+          default: 0
+          minimum: 0
+      required:
+        - home_team_id
+        - away_team_id
+      additionalProperties: false
+        
