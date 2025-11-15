@@ -3,17 +3,17 @@ info:
   title: Champions League
   version: 0.0.1
   description: 'Torneio da Champions League'
-  contact: 
+  contact:
     name: inf25dw1g05
     email: inf25dw1g05@gmail.com
 
 servers:
-  - url: http://localhost:8080
-    description: Champions League
-    variables:
-      basePath:
-        default: /Groups
-components: 
+- url: http://localhost:8080/{basePath}
+  description: Champions League
+  variables:
+    basePath:
+      default: /Groups
+components:
   schemas:
     Team:
       title: Team
@@ -30,11 +30,11 @@ components:
           type: string
         group:
           type: string
-      required: 
-        - name
-        - country
-        - coach
-        - group
+      required:
+      - name
+      - country
+      - coach
+      - group
       additionalProperties: false
 
     Player:
@@ -54,12 +54,12 @@ components:
           type: integer
           format: int64
       required:
-        - name
-        - position
-        - nationality
-        - team_id
+      - name
+      - position
+      - nationality
+      - team_id
       additionalProperties: false
-    
+
     Match:
       title: Match
       type: object
@@ -87,10 +87,10 @@ components:
           default: 0
           minimum: 0
       required:
-        - home_team_id
-        - away_team_id
+      - home_team_id
+      - away_team_id
       additionalProperties: false
-    
+
     MatchEvent:
       title: MatchEvent
       type: object
@@ -106,14 +106,267 @@ components:
           format: int64
         event_type:
           type: string
-          enum: ['Goal', 'Yellow Card', 'Red Card', 'Assist']
+          enum: [ 'Goal', 'Yellow Card', 'Red Card', 'Assist' ]
         minute:
           type: integer
           minimum: 1
           maximum: 90
       required:
-        - match_id
-        - player_id
-        - event_type
-        - minute
+      - match_id
+      - player_id
+      - event_type
+      - minute
       additionalProperties: false
+
+  examples:
+    TeamExample01:
+      value:
+        team_id: 1
+        name: "Porto"
+        country: "Portugal"
+        coach: "Frascesco Farioli"
+        group: "A"
+    TeamExample02:
+      value:
+        team_id: 2
+        name: "Liverpool"
+        country: "England"
+        coach: "Arne Slot"
+        group: "A"
+    PlayerExample01:
+      value:
+        player_id: 1
+        name: "Victor Froholdt"
+        position: "Central Midfield"
+        nationality: "Danish"
+        team_id: 1
+    MatchExample01:
+      value:
+        match_id: 1
+        home_team_id: 1
+        away_team_id: 2
+        match_date: "2025-11-15"
+        venue: "Estádio do Dragão"
+        home_score: 1
+        away_score: 0
+    MatchEventExample01:
+      value:
+        event_id: 1
+        match_id: 1
+        player_id: 1
+        event_type: "Goal"
+        minute: 29
+paths:
+  '/teams':
+    get:
+      tags:
+      - TeamsController
+      operationId: retrieveTeams
+      summary: Retrieve Teams
+      description: Ver todas as equipas, sendo possível filtrar!
+      parameters:
+      - name: country
+        in: query
+        description: Filtrar por país da equipa
+        required: false
+        schema:
+          type: string
+        example: "Portugal"
+      - name: group
+        in: query
+        description: Filtrar por grupo da equipa
+        required: false
+        schema:
+          type: string
+        example: "A"
+      - name: coach
+        in: query
+        description: Filtrar por nome do treinador
+        required: false
+        schema:
+          type: string
+        example: "Ancelotti"
+      responses:
+        '200':
+          description: Array of Teams model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+                xml:
+                  name: Teams
+    post:
+      tags:
+      - TeamsController
+      operationId: createTeam
+      summary: Create team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+      responses:
+        '200':
+          description: Create a Team model instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+
+  '/teams/{id}':
+    get:
+      tags:
+      - TeamsController
+      operationId: retrieveTeam
+      summary: Retrieve team
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+        examples:
+          one:
+            value: 1
+            summary: Retrieve Team id 1
+          two:
+            value: 2
+            summary: Retrieve Team id 2
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '400':
+          description: Bad request
+        '404':
+          description: id not found
+    put:
+      tags:
+      - TeamsController
+      operationId: updateTeam
+      summary: Update Team
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Team PUT Success
+        '400':
+          description: Bad request
+        '404':
+          description: id not found
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+        required: true
+        examples:
+          one:
+            value: 1
+            summary: Update Team id 1
+          two:
+            value: 2
+            summary: Update Team id 2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+            examples:
+              AeoportoExample01:
+                $ref: '#/components/examples/TeamExample01'
+              AeoportoExample02:
+                $ref: '#/components/examples/TeamExample02'
+    delete:
+      tags:
+      - TeamsController
+      operationId: deleteTeam
+      summary: Delete team
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+        examples:
+          one:
+            value: 1
+            summary: Delete Team id 1
+          two:
+            value: 2
+            summary: Delete Team id 2
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: id not found
+
+  '/teams/{id}/matches':
+    parameters:
+    - name: id
+      in: path
+      description: ID da equipa da qual obter os jogos
+      required: true
+      schema:
+        type: integer
+        format: int64
+    get:
+      tags:
+      - Teams
+      - Matches
+      summary: Listar jogos de uma equipa
+      description: Obter todos os jogos (passados e futuros) de uma equipa específica.
+      operationId: getMatchesByTeam
+      responses:
+        '200':
+          description: Lista de jogos da equipa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+        '404':
+          description: Equipa não encontrada
+
+  '/teams/{id}/players':
+    parameters:
+    - name: id
+      in: path
+      description: ID da equipa da qual obter os jogadores
+      required: true
+      schema:
+        type: integer
+        format: int64
+    get:
+      tags:
+      - Teams
+      - Players
+      summary: Listar jogadores de uma equipa
+      description: Obter todos os jogadores de uma equipa específica.
+      operationId: getPlayersByTeam
+      responses:
+        '200':
+          description: Lista de jogadores da equipa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+        '404':
+          description: Equipa não encontrada
