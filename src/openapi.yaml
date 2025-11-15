@@ -53,11 +53,17 @@ components:
         team_id:
           type: integer
           format: int64
+        shirt_number:
+          type: integer
+          description: Número da camisola do jogador
+          minimum: 1
+          maximum: 99
       required:
       - name
       - position
       - nationality
       - team_id
+      - shirt_number
       additionalProperties: false
 
     Match:
@@ -139,6 +145,7 @@ components:
         name: "Victor Froholdt"
         position: "Central Midfield"
         nationality: "Danish"
+        shirt_number: 8
         team_id: 1
     MatchExample01:
       value:
