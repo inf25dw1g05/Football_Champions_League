@@ -169,7 +169,7 @@ paths:
       tags:
       - TeamsController
       operationId: retrieveTeams
-      summary: Retrieve Teams
+      summary: Ver equipas
       description: Ver todas as equipas, sendo possível filtrar!
       parameters:
       - name: country
@@ -208,7 +208,7 @@ paths:
       tags:
       - TeamsController
       operationId: createTeam
-      summary: Create team
+      summary: Criar equipa
       requestBody:
         content:
           application/json:
@@ -227,7 +227,7 @@ paths:
       tags:
       - TeamsController
       operationId: retrieveTeam
-      summary: Retrieve team
+      summary: Ver equipa em específico
       parameters:
       - name: id
         in: path
@@ -258,7 +258,7 @@ paths:
       tags:
       - TeamsController
       operationId: updateTeam
-      summary: Update Team
+      summary: Atualizar Equipa
       responses:
         '200':
           description: Success
@@ -300,7 +300,7 @@ paths:
       tags:
       - TeamsController
       operationId: deleteTeam
-      summary: Delete team
+      summary: Apagar Equipa
       parameters:
       - name: id
         in: path
@@ -333,8 +333,7 @@ paths:
         format: int64
     get:
       tags:
-      - Teams
-      - Matches
+      - TeamsController
       summary: Listar jogos de uma equipa
       description: Obter todos os jogos (passados e futuros) de uma equipa específica.
       operationId: getMatchesByTeam
@@ -361,8 +360,7 @@ paths:
         format: int64
     get:
       tags:
-      - Teams
-      - Players
+      - TeamsController
       summary: Listar jogadores de uma equipa
       description: Obter todos os jogadores de uma equipa específica.
       operationId: getPlayersByTeam
@@ -383,7 +381,7 @@ paths:
       tags:
       - PlayersController
       operationId: retrievePlayers
-      summary: Retrieve Players
+      summary: Ver Jogadores
       description: Ver todos os jogadores , sendo possível filtrar!
       parameters:
       - name: position
@@ -415,7 +413,7 @@ paths:
       tags:
       - PlayersController
       operationId: createPlayer
-      summary: Create Player
+      summary: Criar Jogador
       description: Criar um novo jogador.
       requestBody:
         required: true
@@ -436,7 +434,7 @@ paths:
       tags:
       - PlayersController
       operationId: retrievePlayer
-      summary: Retrieve Player
+      summary: Ver jogador em específico
       parameters:
       - name: id
         in: path
@@ -458,7 +456,7 @@ paths:
       tags:
       - PlayersController
       operationId: updatePlayer
-      summary: Update Player
+      summary: Atualizar Jogador
       parameters:
       - name: id
         in: path
@@ -486,7 +484,7 @@ paths:
       tags:
       - PlayersController
       operationId: deletePlayer
-      summary: Delete Player
+      summary: Apagar Jogador
       parameters:
       - name: id
         in: path
@@ -503,10 +501,9 @@ paths:
   '/players/{id}/events':
     get:
       tags:
-      - Players
-      - MatchEvents
+      - PlayersController
       operationId: getEventsByPlayer
-      summary: Retrieve Player Events
+      summary: Listar Eventos de um jogador específico
       parameters:
       - name: id
         in: path
