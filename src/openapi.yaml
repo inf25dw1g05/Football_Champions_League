@@ -377,3 +377,164 @@ paths:
                   $ref: '#/components/schemas/Player'
         '404':
           description: Equipa não encontrada
+
+  '/players':
+    get:
+      tags:
+      - PlayersController
+      operationId: retrievePlayers
+      summary: Retrieve Players
+      description: Ver todos os jogadores , sendo possível filtrar!
+      parameters:
+      - name: position
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: nationality
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: team_id
+        in: query
+        schema:
+          type: integer
+          format: int64
+        required: false
+      responses:
+        '200':
+          description: Lista de jogadores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+    post:
+      tags:
+      - PlayersController
+      operationId: createPlayer
+      summary: Create Player
+      description: Criar um novo jogador.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '200':
+          description: Jogador criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+
+  '/players/{id}':
+    get:
+      tags:
+      - PlayersController
+      operationId: retrievePlayer
+      summary: Retrieve Player
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Jogador encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '404':
+          description: Jogador não encontrado
+
+    put:
+      tags:
+      - PlayersController
+      operationId: updatePlayer
+      summary: Update Player
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '200':
+          description: Jogador Atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '404':
+          description: Jogador não encontrado
+
+    delete:
+      tags:
+      - PlayersController
+      operationId: deletePlayer
+      summary: Delete Player
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: Jogador não encontrado
+
+  '/players/{id}/events':
+    get:
+      tags:
+      - Players
+      - MatchEvents
+      operationId: getEventsByPlayer
+      summary: Retrieve Player Events
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID do jogador
+        schema:
+          type: integer
+          format: int64
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [ Goal, Yellow Card, Red Card, Assist ]
+      - name: match_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Lista de eventos/acontecimentos do jogador
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatchEvent'
+        '404':
+          description: Jogador não encontrado
