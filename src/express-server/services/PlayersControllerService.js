@@ -188,10 +188,10 @@ const retrievePlayer = ({ id }) => new Promise(
 *
 * position String  (optional)
 * nationality String  (optional)
-* teamUnderscoreid Long  (optional)
+* team_id Long  (optional)
 * returns List
 * */
-const retrievePlayers = ({ position, nationality, teamUnderscoreid }) => new Promise(
+const retrievePlayers = ({ position, nationality, team_id }) => new Promise(
   async (resolve, reject) => {
     try {
       let query = 'SELECT * FROM player';
@@ -208,9 +208,9 @@ const retrievePlayers = ({ position, nationality, teamUnderscoreid }) => new Pro
         params.push(nationality);
       }
 
-      if (teamUnderscoreid) {
+      if (team_id) {
         conditions.push('team_id = ?');
-        params.push(teamUnderscoreid);
+        params.push(team_id);
       }
 
       if (conditions.length > 0) {
