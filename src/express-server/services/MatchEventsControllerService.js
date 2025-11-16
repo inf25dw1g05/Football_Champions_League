@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const Service = require('./Service');
+const sql = require('../utils/db');
 
 /**
 * Criar evento do jogo
@@ -9,21 +10,20 @@ const Service = require('./Service');
 * matchEvent MatchEvent 
 * returns MatchEvent
 * */
-const createEvent = ({ id, matchEvent }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        id,
-        matchEvent,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
+const createEvent = ({ id, matchEvent }) => new Promise((resolve, reject) => {
+  const { player_id, type, minute, description } = matchEvent;
+
+  sql.query(
+    'INSERT INTO match_event (match_id, player_id, type, minute, description) VALUES (?,?,?,?,?)',
+    [id, player_id, type, minute, description],
+    (err, res) => {
+      if (err) return reject(Service.rejectResponse(err.message, 500));
+
+      resolve(Service.successResponse({ event_id: res.insertId }));
     }
-  },
-);
+  );
+});
+
 /**
 * Remover evento
 * Anular um evento (ex. VAR anula um golo ou cartão).
@@ -31,20 +31,17 @@ const createEvent = ({ id, matchEvent }) => new Promise(
 * eventUnderscoreid Integer ID do evento
 * no response value expected for this operation
 * */
-const deleteEvent = ({ eventUnderscoreid }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        eventUnderscoreid,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
+const deleteEvent = ({ event_id }) => new Promise((resolve, reject) => {
+  sql.query('DELETE FROM match_event WHERE event_id = ?', [event_id], (err, res) => {
+    if (err) return reject(Service.rejectResponse(err.message, 500));
+
+    if (res.affectedRows === 0)
+      return reject(Service.rejectResponse('Event not found', 404));
+
+    resolve(Service.successResponse({ deleted: event_id }));
+  });
+});
+
 /**
 * Listar eventos do jogo
 * Ver a timeline de eventos de um jogo específico.
@@ -54,22 +51,27 @@ const deleteEvent = ({ eventUnderscoreid }) => new Promise(
 * playerUnderscoreid Integer Filtrar por ID do jogador. (optional)
 * returns List
 * */
-const retrieveEvents = ({ id, type, playerUnderscoreid }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        id,
-        type,
-        playerUnderscoreid,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
+const retrieveEvents = ({ id, type, player_id }) => new Promise((resolve, reject) => {
+  let query = 'SELECT * FROM match_event WHERE match_id = ?';
+  const params = [id];
+
+  if (type) {
+    query += ' AND type = ?';
+    params.push(type);
+  }
+
+  if (player_id) {
+    query += ' AND player_id = ?';
+    params.push(player_id);
+  }
+
+  sql.query(query, params, (err, res) => {
+    if (err) return reject(Service.rejectResponse(err.message, 500));
+
+    resolve(Service.successResponse(res));
+  });
+});
+
 /**
 * Atualizar evento
 * Corrigir um evento existente (ex. VAR altera tipo ou minuto).
@@ -78,21 +80,25 @@ const retrieveEvents = ({ id, type, playerUnderscoreid }) => new Promise(
 * matchEvent MatchEvent 
 * returns MatchEvent
 * */
-const updateEvent = ({ eventUnderscoreid, matchEvent }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        eventUnderscoreid,
-        matchEvent,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
+const updateEvent = ({ event_id, matchEvent }) => new Promise((resolve, reject) => {
+  const { player_id, type, minute, description } = matchEvent;
+
+  sql.query(
+    'UPDATE match_event SET player_id=?, type=?, minute=?, description=? WHERE event_id=?',
+    [player_id, type, minute, description, event_id],
+    (err, res) => {
+      if (err) return reject(Service.rejectResponse(err.message, 500));
+
+      if (res.affectedRows === 0)
+        return reject(Service.rejectResponse('Event not found', 404));
+
+      sql.query('SELECT * FROM match_event WHERE event_id = ?', [event_id], (err2, res2) => {
+        if (err2) return reject(Service.rejectResponse(err2.message, 500));
+        resolve(Service.successResponse(res2[0]));
+      });
     }
-  },
-);
+  );
+});
 
 module.exports = {
   createEvent,
