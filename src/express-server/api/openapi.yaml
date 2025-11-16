@@ -8,10 +8,10 @@ info:
   version: 0.0.1
 servers:
 - description: Champions League
-  url: "http://localhost:8080/{basePath}"
+  url: http://localhost:8080
   variables:
     basePath:
-      default: /Groups
+      default: /
 paths:
   /teams:
     get:
@@ -429,8 +429,7 @@ paths:
       x-eov-operation-handler: controllers/PlayersControllerController
   /matches:
     get:
-      description: "Ver todos os jogos. Permite filtrar por equipa, data, grupo ou\
-        \ estado."
+      description: "Ver todos os jogos. Permite filtrar por equipa, data, grupo ou estado."
       operationId: retrieveMatches
       parameters:
       - description: Filtrar por ID da equipa.
