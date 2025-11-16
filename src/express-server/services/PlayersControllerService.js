@@ -109,10 +109,10 @@ const deletePlayer = ({ id }) => new Promise(
 *
 * id Long ID do jogador
 * type String  (optional)
-* matchUnderscoreid Long  (optional)
+* match_id Long  (optional)
 * returns List
 * */
-const getEventsByPlayer = ({ id, type, matchUnderscoreid }) => new Promise(
+const getEventsByPlayer = ({ id, type, match_id }) => new Promise(
   async (resolve, reject) => {
     try {
 
@@ -125,9 +125,9 @@ const getEventsByPlayer = ({ id, type, matchUnderscoreid }) => new Promise(
         params.push(type);
       }
 
-      if (matchUnderscoreid) {
+      if (match_id) {
         conditions.push('match_id = ?');
-        params.push(matchUnderscoreid);
+        params.push(match_id);
       }
 
       if (conditions.length > 0) {
