@@ -8,11 +8,11 @@ info:
     email: inf25dw1g05@gmail.com
 
 servers:
-- url: http://localhost:8080/{basePath}
+- url: http://localhost:8080
   description: Champions League
   variables:
     basePath:
-      default: /Groups
+      default: /
 components:
   schemas:
     Team:

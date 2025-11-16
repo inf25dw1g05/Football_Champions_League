@@ -1,0 +1,999 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: inf25dw1g05@gmail.com
+    name: inf25dw1g05
+  description: Torneio da Champions League
+  title: Champions League
+  version: 0.0.1
+servers:
+- description: Champions League
+  url: "http://localhost:8080/{basePath}"
+  variables:
+    basePath:
+      default: /Groups
+paths:
+  /teams:
+    get:
+      description: "Ver todas as equipas, sendo possível filtrar!"
+      operationId: retrieveTeams
+      parameters:
+      - description: Filtrar por país da equipa
+        example: Portugal
+        explode: true
+        in: query
+        name: country
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filtrar por grupo da equipa
+        example: A
+        explode: true
+        in: query
+        name: group
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filtrar por nome do treinador
+        example: Ancelotti
+        explode: true
+        in: query
+        name: coach
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Team"
+                type: array
+                xml:
+                  name: Teams
+          description: Array of Teams model instances
+      summary: Ver equipas
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+    post:
+      operationId: createTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Team"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+          description: Create a Team model instance
+      summary: Criar equipa
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+  /teams/{id}:
+    delete:
+      operationId: deleteTeam
+      parameters:
+      - examples:
+          one:
+            summary: Delete Team id 1
+            value: 1
+          two:
+            summary: Delete Team id 2
+            value: 2
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: id not found
+      summary: Apagar Equipa
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+    get:
+      operationId: retrieveTeam
+      parameters:
+      - examples:
+          one:
+            summary: Retrieve Team id 1
+            value: 1
+          two:
+            summary: Retrieve Team id 2
+            value: 2
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+          description: Success
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+      summary: Ver equipa em específico
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+    put:
+      operationId: updateTeam
+      parameters:
+      - examples:
+          one:
+            summary: Update Team id 1
+            value: 1
+          two:
+            summary: Update Team id 2
+            value: 2
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              AeoportoExample01:
+                $ref: "#/components/examples/TeamExample01"
+              AeoportoExample02:
+                $ref: "#/components/examples/TeamExample02"
+            schema:
+              $ref: "#/components/schemas/Team"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                description: Team PUT Success
+          description: Success
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+      summary: Atualizar Equipa
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+  /teams/{id}/matches:
+    get:
+      description: Obter todos os jogos (passados e futuros) de uma equipa específica.
+      operationId: getMatchesByTeam
+      parameters:
+      - description: ID da equipa da qual obter os jogos
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Match"
+                type: array
+          description: Lista de jogos da equipa
+        "404":
+          description: Equipa não encontrada
+      summary: Listar jogos de uma equipa
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+  /teams/{id}/players:
+    get:
+      description: Obter todos os jogadores de uma equipa específica.
+      operationId: getPlayersByTeam
+      parameters:
+      - description: ID da equipa da qual obter os jogadores
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Player"
+                type: array
+          description: Lista de jogadores da equipa
+        "404":
+          description: Equipa não encontrada
+      summary: Listar jogadores de uma equipa
+      tags:
+      - TeamsController
+      x-eov-operation-handler: controllers/TeamsControllerController
+  /players:
+    get:
+      description: "Ver todos os jogadores , sendo possível filtrar!"
+      operationId: retrievePlayers
+      parameters:
+      - explode: true
+        in: query
+        name: position
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: nationality
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: team_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Player"
+                type: array
+          description: Lista de jogadores
+      summary: Ver Jogadores
+      tags:
+      - PlayersController
+      x-eov-operation-handler: controllers/PlayersControllerController
+    post:
+      description: Criar um novo jogador.
+      operationId: createPlayer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Player"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+          description: Jogador criado
+      summary: Criar Jogador
+      tags:
+      - PlayersController
+      x-eov-operation-handler: controllers/PlayersControllerController
+  /players/{id}:
+    delete:
+      operationId: deletePlayer
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: Jogador não encontrado
+      summary: Apagar Jogador
+      tags:
+      - PlayersController
+      x-eov-operation-handler: controllers/PlayersControllerController
+    get:
+      operationId: retrievePlayer
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+          description: Jogador encontrado
+        "404":
+          description: Jogador não encontrado
+      summary: Ver jogador em específico
+      tags:
+      - PlayersController
+      x-eov-operation-handler: controllers/PlayersControllerController
+    put:
+      operationId: updatePlayer
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Player"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+          description: Jogador Atualizado
+        "404":
+          description: Jogador não encontrado
+      summary: Atualizar Jogador
+      tags:
+      - PlayersController
+      x-eov-operation-handler: controllers/PlayersControllerController
+  /players/{id}/events:
+    get:
+      operationId: getEventsByPlayer
+      parameters:
+      - description: ID do jogador
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - Goal
+          - Yellow Card
+          - Red Card
+          - Assist
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: match_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/MatchEvent"
+                type: array
+          description: Lista de eventos/acontecimentos do jogador
+        "404":
+          description: Jogador não encontrado
+      summary: Listar Eventos de um jogador específico
+      tags:
+      - PlayersController
+      x-eov-operation-handler: controllers/PlayersControllerController
+  /matches:
+    get:
+      description: "Ver todos os jogos. Permite filtrar por equipa, data, grupo ou\
+        \ estado."
+      operationId: retrieveMatches
+      parameters:
+      - description: Filtrar por ID da equipa.
+        explode: true
+        in: query
+        name: team_id
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filtrar por data (YYYY-MM-DD).
+        explode: true
+        in: query
+        name: date
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Filtrar por grupo
+        explode: true
+        in: query
+        name: group
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Estado do jogo - live, finished ou upcoming."
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - live
+          - finished
+          - upcoming
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Match"
+                type: array
+          description: Lista de jogos
+      summary: Listar jogos
+      tags:
+      - MatchesController
+      x-eov-operation-handler: controllers/MatchesControllerController
+    post:
+      description: Agendar / criar um novo jogo na competição.
+      operationId: createMatch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Match"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+          description: Jogo criado
+      summary: Criar jogo
+      tags:
+      - MatchesController
+      x-eov-operation-handler: controllers/MatchesControllerController
+  /matches/{id}:
+    delete:
+      description: Cancelar ou eliminar um jogo.
+      operationId: deleteMatch
+      parameters:
+      - description: ID do jogo
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: Jogo removido
+        "404":
+          description: Jogo não encontrado
+      summary: Remover jogo
+      tags:
+      - MatchesController
+      x-eov-operation-handler: controllers/MatchesControllerController
+    get:
+      description: "Obter os detalhes de um jogo (equipas, estádio, data, resultado)."
+      operationId: retrieveMatch
+      parameters:
+      - description: ID do jogo
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+          description: Detalhes do jogo
+        "404":
+          description: Jogo não encontrado
+      summary: Ver jogo
+      tags:
+      - MatchesController
+      x-eov-operation-handler: controllers/MatchesControllerController
+    put:
+      description: "Atualizar dados do jogo (venue, match_date ou resultado)."
+      operationId: updateMatch
+      parameters:
+      - description: ID do jogo
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Match"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+          description: Jogo atualizado
+        "404":
+          description: Jogo não encontrado
+      summary: Atualizar jogo
+      tags:
+      - MatchesController
+      x-eov-operation-handler: controllers/MatchesControllerController
+  /matches/{id}/events:
+    get:
+      description: Ver a timeline de eventos de um jogo específico.
+      operationId: retrieveEvents
+      parameters:
+      - description: ID do jogo
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Filtrar por tipo de evento
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - Goal
+          - Yellow Card
+          - Red Card
+          - Assist
+          type: string
+        style: form
+      - description: Filtrar por ID do jogador.
+        explode: true
+        in: query
+        name: player_id
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/MatchEvent"
+                type: array
+          description: Lista de eventos do jogo
+        "404":
+          description: Jogo não encontrado
+      summary: Listar eventos do jogo
+      tags:
+      - MatchEventsController
+      x-eov-operation-handler: controllers/MatchEventsControllerController
+    post:
+      description: "Registar um novo evento (golo, cartão, assistência) no jogo."
+      operationId: createEvent
+      parameters:
+      - description: ID do jogo
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchEvent"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchEvent"
+          description: Evento criado
+        "404":
+          description: Jogo não encontrado
+      summary: Criar evento do jogo
+      tags:
+      - MatchEventsController
+      x-eov-operation-handler: controllers/MatchEventsControllerController
+  /events/{event_id}:
+    delete:
+      description: Anular um evento (ex. VAR anula um golo ou cartão).
+      operationId: deleteEvent
+      parameters:
+      - description: ID do evento
+        explode: false
+        in: path
+        name: event_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: Evento removido
+        "404":
+          description: Evento não encontrado
+      summary: Remover evento
+      tags:
+      - MatchEventsController
+      x-eov-operation-handler: controllers/MatchEventsControllerController
+    put:
+      description: Corrigir um evento existente (ex. VAR altera tipo ou minuto).
+      operationId: updateEvent
+      parameters:
+      - description: ID do evento
+        explode: false
+        in: path
+        name: event_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchEvent"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchEvent"
+          description: Evento atualizado
+        "404":
+          description: Evento não encontrado
+      summary: Atualizar evento
+      tags:
+      - MatchEventsController
+      x-eov-operation-handler: controllers/MatchEventsControllerController
+  /standings:
+    get:
+      description: Calcular e devolver a tabela de classificação por grupo.
+      operationId: getStandings
+      parameters:
+      - description: Filtrar por grupo
+        explode: true
+        in: query
+        name: group
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Standing"
+                type: array
+          description: Tabela de classificação
+      summary: Obter classificação (standings)
+      tags:
+      - StatsController
+      x-eov-operation-handler: controllers/StatsControllerController
+  /stats/top-scorers:
+    get:
+      description: Lista dos jogadores com mais golos.
+      operationId: getTopScorers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/PlayerStats"
+                type: array
+          description: Lista de melhores marcadores
+      summary: Melhores marcadores
+      tags:
+      - StatsController
+      x-eov-operation-handler: controllers/StatsControllerController
+  /stats/top-assists:
+    get:
+      description: Lista dos jogadores com mais assistências.
+      operationId: getTopAssists
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/PlayerStats"
+                type: array
+          description: Lista de melhores assistentes
+      summary: Melhores assistências
+      tags:
+      - StatsController
+      x-eov-operation-handler: controllers/StatsControllerController
+  /stats/discipline:
+    get:
+      description: Jogadores com mais cartões (amarelos/vermelhos).
+      operationId: getDisciplineStats
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/PlayerStats"
+                type: array
+          description: Estatísticas disciplinares
+      summary: Estatísticas disciplinares
+      tags:
+      - StatsController
+      x-eov-operation-handler: controllers/StatsControllerController
+components:
+  examples:
+    TeamExample01:
+      value:
+        team_id: 1
+        name: Porto
+        country: Portugal
+        coach: Frascesco Farioli
+        group: A
+    TeamExample02:
+      value:
+        team_id: 2
+        name: Liverpool
+        country: England
+        coach: Arne Slot
+        group: A
+    PlayerExample01:
+      value:
+        player_id: 1
+        name: Victor Froholdt
+        position: Central Midfield
+        nationality: Danish
+        shirt_number: 8
+        team_id: 1
+    MatchExample01:
+      value:
+        match_id: 1
+        home_team_id: 1
+        away_team_id: 2
+        match_date: 2025-11-15
+        venue: Estádio do Dragão
+        home_score: 1
+        away_score: 0
+    MatchEventExample01:
+      value:
+        event_id: 1
+        match_id: 1
+        player_id: 1
+        event_type: Goal
+        minute: 29
+  schemas:
+    Team:
+      additionalProperties: false
+      example:
+        country: country
+        name: name
+        team_id: 0
+        coach: coach
+        group: group
+      properties:
+        team_id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        country:
+          type: string
+        coach:
+          type: string
+        group:
+          type: string
+      required:
+      - coach
+      - country
+      - group
+      - name
+      title: Team
+      type: object
+    Standing:
+      example:
+        goal_difference: 1
+        team_id: 0
+        team_name: team_name
+        points: 6
+      properties:
+        team_id:
+          type: integer
+        team_name:
+          type: string
+        points:
+          type: integer
+        goal_difference:
+          type: integer
+      type: object
+    Player:
+      additionalProperties: false
+      example:
+        player_id: 0
+        nationality: nationality
+        name: name
+        position: position
+        team_id: 6
+        shirt_number: 15
+      properties:
+        player_id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        position:
+          type: string
+        nationality:
+          type: string
+        team_id:
+          format: int64
+          type: integer
+        shirt_number:
+          description: Número da camisola do jogador
+          maximum: 99
+          minimum: 1
+          type: integer
+      required:
+      - name
+      - nationality
+      - position
+      - shirt_number
+      - team_id
+      title: Player
+      type: object
+    PlayerStats:
+      example:
+        player_id: 0
+        player_name: player_name
+        value: 6
+      properties:
+        player_id:
+          type: integer
+        player_name:
+          type: string
+        value:
+          type: integer
+      type: object
+    Match:
+      additionalProperties: false
+      example:
+        venue: venue
+        home_team_id: 6
+        home_score: 0
+        away_score: 0
+        match_id: 0
+        away_team_id: 1
+        match_date: 2000-01-23
+      properties:
+        match_id:
+          format: int64
+          type: integer
+        home_team_id:
+          format: int64
+          type: integer
+        away_team_id:
+          format: int64
+          type: integer
+        match_date:
+          format: date
+          type: string
+        venue:
+          type: string
+        home_score:
+          default: 0
+          minimum: 0
+          type: integer
+        away_score:
+          default: 0
+          minimum: 0
+          type: integer
+      required:
+      - away_team_id
+      - home_team_id
+      title: Match
+      type: object
+    MatchEvent:
+      additionalProperties: false
+      example:
+        event_id: 0
+        player_id: 1
+        event_type: Goal
+        match_id: 6
+        minute: 54
+      properties:
+        event_id:
+          format: int64
+          type: integer
+        match_id:
+          format: int64
+          type: integer
+        player_id:
+          format: int64
+          type: integer
+        event_type:
+          enum:
+          - Goal
+          - Yellow Card
+          - Red Card
+          - Assist
+          type: string
+        minute:
+          maximum: 90
+          minimum: 1
+          type: integer
+      required:
+      - event_type
+      - match_id
+      - minute
+      - player_id
+      title: MatchEvent
+      type: object
