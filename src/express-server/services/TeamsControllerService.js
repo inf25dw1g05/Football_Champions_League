@@ -11,7 +11,7 @@ const sql = require('../utils/db');
 const createTeam = ({ team }) => new Promise(async (resolve, reject) => {
   try{
       const validGroups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-      if (!team.group_name || !validGroups.includes(team.group_name)) {
+      if (!team.group || !validGroups.includes(team.group)) {
         // Rejeita com um erro 400 (Bad Request)
         return reject(
           Service.rejectResponse(
@@ -21,7 +21,7 @@ const createTeam = ({ team }) => new Promise(async (resolve, reject) => {
         );
       }
       sql.query('INSERT INTO team (name, country, coach, group_name) Values(?,?,?,?)', 
-        [team.name, team.country, team.coach, team.group_name],
+        [team.name, team.country, team.coach, team.group],
         (err, res) => {
           if(err){
             // Os nomes das equipas devem ser unicos, tratar erro aqui em vez de deixar a base de dados tratar dele
@@ -173,7 +173,7 @@ const retrieveTeams = ({ country, group, coach }) => new Promise((resolve, rejec
     params.push(country);
   }
   if (group) {
-    whereConditions.push('group_name = ?');
+    whereConditions.push('group_name= ?');
     params.push(group);
   }
   if (coach) {
@@ -204,7 +204,7 @@ const retrieveTeams = ({ country, group, coach }) => new Promise((resolve, rejec
 const updateTeam = ({ id, team }) => new Promise(async (resolve, reject) => {
   try{
       const validGroups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-      if (!team.group_name || !validGroups.includes(team.group_name)) {
+      if (!team.group || !validGroups.includes(team.group)) {
         // Rejeita com um erro 400 (Bad Request)
         return reject(
           Service.rejectResponse(
@@ -214,7 +214,7 @@ const updateTeam = ({ id, team }) => new Promise(async (resolve, reject) => {
         );
       }
       sql.query('UPDATE team SET name=?, country=?, coach=?, group_name=? WHERE team_id=?',
-        [team.name, team.country, team.coach, team.group_name, id],
+        [team.name, team.country, team.coach, team.group, id],
         (err, res) => {
           if(err){
               // Os nomes das equipas devem ser unicos, tratar erro aqui em vez de deixar a base de dados tratar dele
