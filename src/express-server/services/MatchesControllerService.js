@@ -16,8 +16,8 @@ const createMatch = ({ match }) => new Promise(async (resolve, reject) => {
     }
 
     sql.query(
-      'INSERT INTO `match` (home_team_id, away_team_id, venue, match_date, group_name, status) VALUES (?,?,?,?,?,?)',
-      [match.home_team_id, match.away_team_id, match.venue, match.match_date, match.group_name, match.status],
+      'INSERT INTO `match` (home_team_id, away_team_id, venue, match_date) VALUES (?,?,?,?)',
+      [match.home_team_id, match.away_team_id, match.venue, match.match_date],
       (err, res) => {
         if (err) return reject(Service.rejectResponse(err.message, 500));
 
@@ -78,25 +78,37 @@ const retrieveMatch = ({ id }) => new Promise((resolve, reject) => {
 * returns List
 * */
 const retrieveMatches = ({ team_id, date, group, status }) => new Promise((resolve, reject) => {
-  let query = 'SELECT * FROM `match`';
+  let query = 'SELECT m.* FROM `match` m';
   const conditions = [];
   const params = [];
-
+  if (group) {
+    query += ' JOIN team t ON m.home_team_id = t.team_id';
+    conditions.push('t.group_name = ?'); 
+    params.push(group);
+  }
   if (team_id) {
-    conditions.push('(home_team_id = ? OR away_team_id = ?)');
+    conditions.push('(m.home_team_id = ? OR m.away_team_id = ?)');
     params.push(team_id, team_id);
   }
   if (date) {
-    conditions.push('DATE(match_date) = ?');
+    conditions.push('DATE(m.match_date) = ?');
     params.push(date);
   }
-  if (group) {
-    conditions.push('group_name = ?');
-    params.push(group);
-  }
   if (status) {
-    conditions.push('status = ?');
-    params.push(status);
+    const statusLower = status.toLowerCase();
+    switch (statusLower) {
+      case 'upcoming':
+        conditions.push('m.match_date > NOW()');
+        break;
+      case 'finished':
+        conditions.push("m.match_date < DATE_SUB(NOW(), INTERVAL 120 MINUTE)");
+        break;
+      case 'live':
+        conditions.push("m.match_date <= NOW() AND m.match_date >= DATE_SUB(NOW(), INTERVAL 120 MINUTE)");
+        break;
+      default:
+        break;
+    }
   }
 
   if (conditions.length > 0) {
@@ -119,8 +131,8 @@ const retrieveMatches = ({ team_id, date, group, status }) => new Promise((resol
 * */
 const updateMatch = ({ id, match }) => new Promise((resolve, reject) => {
   sql.query(
-    'UPDATE `match` SET venue=?, match_date=?, group_name=?, status=? WHERE match_id=?',
-    [match.venue, match.match_date, match.group_name, match.status, id],
+    'UPDATE `match` SET venue=?, match_date=?, home_team_id=?, away_team_id=?, home_score=?, away_score=? WHERE match_id=?',
+    [match.venue, match.match_date, match.home_team_id, match.away_team_id, match.home_score, match.away_score, id],
     (err, res) => {
       if (err) return reject(Service.rejectResponse(err.message, 500));
 
