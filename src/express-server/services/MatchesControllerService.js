@@ -11,15 +11,13 @@ const sql = require('../utils/db');
 * */
 const createMatch = ({ match }) => new Promise(async (resolve, reject) => {
   try {
-    const { home_team_id, away_team_id, venue, match_date, group_name, status } = match;
-
-    if (!home_team_id || !away_team_id) {
+    if (!match.home_team_id || !match.away_team_id) {
       return reject(Service.rejectResponse('Missing team IDs', 400));
     }
 
     sql.query(
       'INSERT INTO `match` (home_team_id, away_team_id, venue, match_date, group_name, status) VALUES (?,?,?,?,?,?)',
-      [home_team_id, away_team_id, venue, match_date, group_name, status],
+      [match.home_team_id, match.away_team_id, match.venue, match.match_date, match.group_name, match.status],
       (err, res) => {
         if (err) return reject(Service.rejectResponse(err.message, 500));
 
@@ -120,11 +118,9 @@ const retrieveMatches = ({ team_id, date, group, status }) => new Promise((resol
 * returns Match
 * */
 const updateMatch = ({ id, match }) => new Promise((resolve, reject) => {
-  const { venue, match_date, group_name, status } = match;
-
   sql.query(
     'UPDATE `match` SET venue=?, match_date=?, group_name=?, status=? WHERE match_id=?',
-    [venue, match_date, group_name, status, id],
+    [match.venue, match.match_date, match.group_name, match.status, id],
     (err, res) => {
       if (err) return reject(Service.rejectResponse(err.message, 500));
 
