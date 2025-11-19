@@ -16,8 +16,8 @@ const createMatch = ({ match }) => new Promise(async (resolve, reject) => {
     }
 
     sql.query(
-      'INSERT INTO `match` (home_team_id, away_team_id, venue, match_date) VALUES (?,?,?,?)',
-      [match.home_team_id, match.away_team_id, match.venue, match.match_date],
+      'INSERT INTO `match` (home_team_id, away_team_id, venue, match_date, home_score, away_score) VALUES (?,?,?,?,?,?)',
+      [match.home_team_id, match.away_team_id, match.venue, match.match_date, match.home_score, match.away_score],
       (err, res) => {
         if (err) return reject(Service.rejectResponse(err.message, 500));
 

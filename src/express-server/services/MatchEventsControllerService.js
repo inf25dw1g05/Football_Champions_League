@@ -12,8 +12,8 @@ const sql = require('../utils/db');
 * */
 const createEvent = ({ id, matchEvent }) => new Promise((resolve, reject) => {
   sql.query(
-    'INSERT INTO match_event (match_id, player_id, type, minute, description) VALUES (?,?,?,?,?)',
-    [id, matchEvent.player_id, matchEvent.type, matchEvent.minute, matchEvent.description],
+    'INSERT INTO match_event (match_id, player_id, event_type, `minute`) VALUES (?,?,?,?)',
+    [id, matchEvent.player_id, matchEvent.type, matchEvent.minute],
     (err, res) => {
       if (err) return reject(Service.rejectResponse(err.message, 500));
 
@@ -80,8 +80,8 @@ const retrieveEvents = ({ id, type, player_id }) => new Promise((resolve, reject
 * */
 const updateEvent = ({ event_id, matchEvent }) => new Promise((resolve, reject) => {
   sql.query(
-    'UPDATE match_event SET player_id=?, type=?, minute=?, description=? WHERE event_id=?',
-    [matchEvent.player_id, matchEvent.type, matchEvent.minute, matchEvent.description, event_id],
+    'UPDATE match_event SET player_id=?, event_type=?, `minute`=? WHERE event_id=?',
+    [matchEvent.player_id, matchEvent.type, matchEvent.minute, event_id],
     (err, res) => {
       if (err) return reject(Service.rejectResponse(err.message, 500));
 
