@@ -1,0 +1,32 @@
+version: '3.8'
+name: champions-league
+services:
+
+  db:
+    build: ./mysql
+    container_name: Champions_League-db
+    image: champions-league-db:custom
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '0000'
+      MYSQL_DATABASE: 'champions_league'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - '3307:3306'
+  app:
+    container_name: Champions_League-app
+    image: champions-league-app:custom
+    restart: always
+    build: ./express-server
+    ports:
+      - '8080:8080'
+    environment:
+      DB_HOST: 'db'
+      DB_USER: 'root'
+      DB_PASSWORD: '0000'
+      DB_NAME: 'champions_league'
+    depends_on:
+      - db
+volumes:
+  mysql-data:
