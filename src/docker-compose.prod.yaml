@@ -1,0 +1,22 @@
+version: '3.8'
+name: champions_league
+services:
+
+  db:
+    image: inf25dw1g05/champions_league_db:1.0
+    container_name: Champions_League-db
+    restart: always
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - '3307:3306'
+  app:
+    container_name: Champions_League-app
+    restart: always
+    image: inf25dw1g05/champions_league_app:1.0
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+volumes:
+  mysql-data:
