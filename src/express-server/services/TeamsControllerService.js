@@ -29,7 +29,7 @@ const createTeam = ({ team }) => new Promise(async (resolve, reject) => {
               return reject(
                 Service.rejectResponse(
                   'Cannot update: another team already has this name.',
-                  409, // Conflict
+                  422,
                 ),
               );
             }
@@ -67,7 +67,7 @@ const deleteTeam = ({ id }) => new Promise((resolve, reject) => {
         return reject(
           Service.rejectResponse(
             'Cannot delete team. It still has players or matches assigned.',
-            409, 
+            422, 
           ),
         );
       }
@@ -222,7 +222,7 @@ const updateTeam = ({ id, team }) => new Promise(async (resolve, reject) => {
                 return reject(
                   Service.rejectResponse(
                     'Cannot update: another team already has this name.',
-                    409,
+                    422,
                   ),
                 );
               }

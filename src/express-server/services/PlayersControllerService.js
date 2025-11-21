@@ -31,7 +31,7 @@ const createPlayer = ({ player }) => new Promise(
               return reject(
                 Service.rejectResponse(
                   'This shirt number is already being used by another player in the same team.',
-                  409,
+                  422,
                 ),
               );
             }
@@ -262,7 +262,7 @@ const updatePlayer = ({ id, player }) => new Promise(
               return reject(
                 Service.rejectResponse(
                   'This shirt number is already being used by another player in the same team.',
-                  409,
+                  422,
                 ),
               );
             }
