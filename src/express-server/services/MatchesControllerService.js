@@ -19,7 +19,12 @@ const createMatch = ({ match }) => new Promise(async (resolve, reject) => {
       'INSERT INTO `match` (home_team_id, away_team_id, venue, match_date, home_score, away_score) VALUES (?,?,?,?,?,?)',
       [match.home_team_id, match.away_team_id, match.venue, match.match_date, match.home_score, match.away_score],
       (err, res) => {
-        if (err) return reject(Service.rejectResponse(err.message, 500));
+        if (err) {
+            if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+                return reject(Service.rejectResponse('Cannot create match: One of the teams provided does not exist.', 400));
+            }
+            return reject(Service.rejectResponse(err.message, 500));
+        }
 
         resolve(Service.successResponse({ match_id: res.insertId }));
       }
@@ -39,7 +44,19 @@ const createMatch = ({ match }) => new Promise(async (resolve, reject) => {
 * */
 const deleteMatch = ({ id }) => new Promise((resolve, reject) => {
   sql.query('DELETE FROM `match` WHERE match_id = ?', [id], (err, res) => {
-    if (err) return reject(Service.rejectResponse(err.message, 500));
+    if (err) {
+      // Verifica se é erro de chave estrangeira (ex: existem eventos associados a este jogo)
+      if (err.code === 'ER_ROW_IS_REFERENCED_2') {
+        return reject(
+          Service.rejectResponse(
+            'Cannot delete match. There are events (goals, cards) associated with it.',
+            422,
+          ),
+        );
+      }
+      
+      return reject(Service.rejectResponse(err.message, 500));
+    }
 
     if (res.affectedRows === 0)
       return reject(Service.rejectResponse('Match not found', 404));
@@ -134,7 +151,12 @@ const updateMatch = ({ id, match }) => new Promise((resolve, reject) => {
     'UPDATE `match` SET venue=?, match_date=?, home_team_id=?, away_team_id=?, home_score=?, away_score=? WHERE match_id=?',
     [match.venue, match.match_date, match.home_team_id, match.away_team_id, match.home_score, match.away_score, id],
     (err, res) => {
-      if (err) return reject(Service.rejectResponse(err.message, 500));
+      if (err) {
+          if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+              return reject(Service.rejectResponse('Cannot update match: One of the teams provided does not exist.', 400));
+          }
+          return reject(Service.rejectResponse(err.message, 500));
+      }
 
       if (res.affectedRows === 0)
         return reject(Service.rejectResponse('Match not found', 404));

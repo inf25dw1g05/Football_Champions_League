@@ -15,7 +15,12 @@ const createEvent = ({ id, matchEvent }) => new Promise((resolve, reject) => {
     'INSERT INTO match_event (match_id, player_id, event_type, `minute`) VALUES (?,?,?,?)',
     [id, matchEvent.player_id, matchEvent.event_type, matchEvent.minute],
     (err, res) => {
-      if (err) return reject(Service.rejectResponse(err.message, 500));
+      if (err) {
+        if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+            return reject(Service.rejectResponse('Cannot create event: The Match ID or Player ID does not exist.', 400));
+        }
+        return reject(Service.rejectResponse(err.message, 500));
+      }
  
       resolve(Service.successResponse({ event_id: res.insertId }));
     }
@@ -83,7 +88,12 @@ const updateEvent = ({ event_id, matchEvent }) => new Promise((resolve, reject) 
     'UPDATE match_event SET player_id=?, event_type=?, `minute`=? WHERE event_id=?',
     [matchEvent.player_id, matchEvent.event_type, matchEvent.minute, event_id],
     (err, res) => {
-      if (err) return reject(Service.rejectResponse(err.message, 500));
+      if (err) {
+        if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+           return reject(Service.rejectResponse('Cannot update event: The provided Player ID does not exist.', 400));
+        }
+        return reject(Service.rejectResponse(err.message, 500));
+      }
  
       if (res.affectedRows === 0)
         return reject(Service.rejectResponse('Event not found', 404));

@@ -78,7 +78,7 @@ const deletePlayer = ({ id }) => new Promise(
             return reject(
               Service.rejectResponse(
                 'Cannot delete player. There are match events linked.',
-                409
+                422
               ),
             );
           }
@@ -264,6 +264,14 @@ const updatePlayer = ({ id, player }) => new Promise(
                   'This shirt number is already being used by another player in the same team.',
                   422,
                 ),
+              );
+            }
+            if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+              return reject(
+                Service.rejectResponse(
+                  'Cannot assign player: team_id does not exist.',
+                  400
+                )
               );
             }
 

@@ -3,7 +3,7 @@ name: champions_league
 services:
 
   db:
-    image: inf25dw1g05/champions_league_db:1.0
+    image: inf25dw1g05/champions_league_db:1.1
     container_name: Champions_League-db
     restart: always
     volumes:
@@ -13,7 +13,7 @@ services:
   app:
     container_name: Champions_League-app
     restart: always
-    image: inf25dw1g05/champions_league_app:1.0
+    image: inf25dw1g05/champions_league_app:1.1
     ports:
       - '8080:8080'
     depends_on:
