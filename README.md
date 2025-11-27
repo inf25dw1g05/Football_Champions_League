@@ -2,14 +2,25 @@
 
 ## Short theme description
 
-An example report using markdown on Github. This documentation is writen using [Markdown](https://www.markdownguide.org/). Here is a [link to the basic syntax](https://www.markdownguide.org/basic-syntax), but an [extended syntax](https://www.markdownguide.org/extended-syntax/) is also available. If you're starting with Markdown, you may want to try a [Markdown Tutorial](https://www.markdowntutorial.com/) and read the [getting started](https://www.markdownguide.org/getting-started/) section.
+Este projeto consiste no desenvolvimento de uso dos metodos CRUD de API REST ao simular uma gestão de fase de grupos de liga dos Campeões, permitindo operar sobre equipas, jogadores, grupos, jogos entre as equipas desses grupos ou ainda sobre acontecimentos dentro desses jogos.O projeto foi desenvolvido em nodeJS, com suporte de uma base de dados MySQL e executada num ambiente de multicontainer Docker. 
+
+This documentation is writen using [Markdown](https://www.markdownguide.org/). Here is a [link to the basic syntax](https://www.markdownguide.org/basic-syntax), but an [extended syntax](https://www.markdownguide.org/extended-syntax/) is also available. If you're starting with Markdown, you may want to try a [Markdown Tutorial](https://www.markdowntutorial.com/) and read the [getting started](https://www.markdownguide.org/getting-started/) section.
 
 ## Repository organization
 
-_Please help reader navigate around describing how the repository is organized by providing links_
+A estrutura do nosso repositório compõe se por:
+
 * **Source code** is in the [src folder](src/).
+    Contém:
+    * API (Express + NodeJS)
+    * MySQL para a configuração da nossa base de dados
+    * Dockerfiles
 * Report chapters are in [doc folder](doc/).
-* Initial [OpenApi document](api/openapi.yaml)
+    * Chapter 1: [Project presentation](doc/c1.md)
+    * Chapter 2: [Resources](doc/c2.md)
+    * Chapter 3: [Product](doc/c3.md)
+    * Chapter 4: [Presentation](doc/c4.md)
+* Initial [OpenApi document](src/openapi.yaml)
 
 ## Gallery
 
@@ -18,13 +29,13 @@ A [table](https://www.markdownguide.org/extended-syntax/#tables) may be usefull 
 
 ## Technologies
 
-_Indicate the technologies you have used in this assignment. Please provide links for the user to read more about those technologies._
-* [XML](https://www.w3.org/XML/)
-* [HTML5](https://html.spec.whatwg.org/multipage/) + [CSS3](https://www.w3.org/Style/CSS/)
-* [Javascript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
-* [PHP](https://www.php.net/)
+As tecnologias principais usadas neste projeto foram:
+
 * [nodeJS](https://nodejs.org/en/)
-* _Any other?_
+* [expressJS](https://expressjs.com/)
+* [MySQL](https://mysql.com/)
+* [openAPI](https://openapis.org/)
+* [Docker](https://docker.com/)
 
 ### Frameworks and Libraries
 
