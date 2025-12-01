@@ -4,7 +4,6 @@
 
 Este projeto consiste no desenvolvimento de uso dos metodos CRUD de API REST ao simular uma gestão de fase de grupos de liga dos Campeões, permitindo operar sobre equipas, jogadores, grupos, jogos entre as equipas desses grupos ou ainda sobre acontecimentos dentro desses jogos.O projeto foi desenvolvido em nodeJS, com suporte de uma base de dados MySQL e executada num ambiente de multicontainer Docker. 
 
-This documentation is writen using [Markdown](https://www.markdownguide.org/). Here is a [link to the basic syntax](https://www.markdownguide.org/basic-syntax), but an [extended syntax](https://www.markdownguide.org/extended-syntax/) is also available. If you're starting with Markdown, you may want to try a [Markdown Tutorial](https://www.markdowntutorial.com/) and read the [getting started](https://www.markdownguide.org/getting-started/) section.
 
 ## Repository organization
 
@@ -12,11 +11,11 @@ A estrutura do nosso repositório compõe se por:
 
 * **Source code** is in the [src folder](src/).
     Contém:
-    * API (Express + NodeJS)[express-server](src/express-server/)
-    * MySQL para a configuração da nossa base de dados [mysql](src/mysql/)
+    * API (Express + NodeJS) na pasta [express-server](src/express-server/)
+    * MySQL para a configuração da nossa base de dados na pasta [mysql](src/mysql/)
     * Dockerfiles:
-        * [Dockerfile](src/express-server/Dockerfile)
-        * [Dockerfile](src/mysql/Dockerfile)
+        * [Dockerfile da API](src/express-server/Dockerfile)
+        * [Dockerfile da Base de dados](src/mysql/Dockerfile)
         * [docker-compose.dev.yaml](src/docker-compose.dev.yaml)
         * [docker-compose.prod.yaml](src/docker-compose.prod.yaml)
     * Initial [OpenApi document](src/openapi.yaml)
@@ -31,9 +30,9 @@ A estrutura do nosso repositório compõe se por:
 
 | Image  | Description | Link to the image |
 | :---    |    :----:   |          ---: |
-| Browser | Final result's example in browser | [example_final_output_in_browser.JPG](/images/example_final_output_in_browser.JPG)   |
-| Postman | Final result's example in Bostman | [final_result_postman.jpg](/images/final_result_postman.jpg)  |
-| Docker  | Multicontainer-App running result in Docker | [multicontainer-app_final_result.JPG](/images/multicontainer-app_final_result.JPG)    |
+| Browser | Final result in browser | [example_final_output_in_browser.JPG](/images/example_final_output_in_browser.JPG)   |
+| Postman | Final result in Postman | [final_result_postman.jpg](/images/final_result_postman.jpg)  |
+| Docker  | Multicontainer-App final result in Docker | [multicontainer-app_final_result.JPG](/images/multicontainer-app_final_result.JPG)    |
 
 ## Technologies
 
