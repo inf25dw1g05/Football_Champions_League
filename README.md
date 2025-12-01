@@ -28,11 +28,11 @@ A estrutura do nosso repositório compõe se por:
 
 ## Gallery of our Final Result
 
-| Image  | Description | Link to the image |
+| Image  | Description | Image´s preview |
 | :---    |    :----:   |          ---: |
-| Browser | Final result in browser | [example_final_output_in_browser.JPG](/images/example_final_output_in_browser.JPG)   |
-| Postman | Final result in Postman | [final_result_postman.jpg](/images/final_result_postman.jpg)  |
-| Docker  | Multicontainer-App final result in Docker | [multicontainer-app_final_result.JPG](/images/multicontainer-app_final_result.JPG)    |
+| Browser | Final result in browser | <img src="images/example_final_output_in_browser.JPG" width="300">   |
+| Postman | Final result in Postman | <img src="images/final_result_postman.jpg" width="300">  |
+| Docker  | Multicontainer-App final result in Docker | <img src="images/multicontainer-app_final_result.JPG" width="300">    |
 
 ## Technologies
 
