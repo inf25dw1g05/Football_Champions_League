@@ -60,7 +60,7 @@ As tecnologias principais usadas neste projeto foram:
 ### Presentation
 * Chapter 4: [Presentation](doc/c4.md)
 
-## 👥 Equipa
+## Equipa
 
 * Rodrigo Esteves [@Rodrigo-Esteves13](https://github.com/Rodrigo-Esteves13)
 * Ricardo Dias [@ricardodias06](https://github.com/ricardodias06)
