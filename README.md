@@ -12,20 +12,28 @@ A estrutura do nosso repositório compõe se por:
 
 * **Source code** is in the [src folder](src/).
     Contém:
-    * API (Express + NodeJS)
-    * MySQL para a configuração da nossa base de dados
-    * Dockerfiles
+    * API (Express + NodeJS)[express-server](src/express-server/)
+    * MySQL para a configuração da nossa base de dados [mysql](src/mysql/)
+    * Dockerfiles:
+        * [Dockerfile](src/express-server/Dockerfile)
+        * [Dockerfile](src/mysql/Dockerfile)
+        * [docker-compose.dev.yaml](src/docker-compose.dev.yaml)
+        * [docker-compose.prod.yaml](src/docker-compose.prod.yaml)
+    * Initial [OpenApi document](src/openapi.yaml)
 * Report chapters are in [doc folder](doc/).
     * Chapter 1: [Project presentation](doc/c1.md)
     * Chapter 2: [Resources](doc/c2.md)
     * Chapter 3: [Product](doc/c3.md)
     * Chapter 4: [Presentation](doc/c4.md)
-* Initial [OpenApi document](src/openapi.yaml)
 
-## Gallery
 
-_Please provide a galery of the final result, with small images_
-A [table](https://www.markdownguide.org/extended-syntax/#tables) may be usefull to organize the images.
+## Gallery of our Final Result
+
+| Image  | Description | Link to the image |
+| :---    |    :----:   |          ---: |
+| Browser | Final result's example in browser | [example_final_output_in_browser.JPG](/images/example_final_output_in_browser.JPG)   |
+| Postman | Final result's example in Bostman | [final_result_postman.jpg](/images/final_result_postman.jpg)  |
+| Docker  | Multicontainer-App running result in Docker | [multicontainer-app_final_result.JPG](/images/multicontainer-app_final_result.JPG)    |
 
 ## Technologies
 
@@ -39,17 +47,10 @@ As tecnologias principais usadas neste projeto foram:
 
 ### Frameworks and Libraries
 
-_Did you use any aditional libraries? Describe them here._
 * Docker
-* Multipass
 * NodeJS
-* JQuery
-* Laravel
-* Bootstrap
-* ReactJS
 
 ## Report
-_Please add at least on section (a file) per Chapter. But you can add more._
 
 ### Project presentation
 * Chapter 1: [Project presentation](doc/c1.md)
