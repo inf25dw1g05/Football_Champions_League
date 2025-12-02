@@ -1,0 +1,2828 @@
+{
+	"info": {
+		"_postman_id": "a5847d74-763b-4961-be0d-24c9ec8aff98",
+		"name": "Champions League",
+		"description": "Torneio da Champions League\n\nContact Support:\n Name: inf25dw1g05\n Email: inf25dw1g05@gmail.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50111863",
+		"_collection_link": "https://ricardodias06-5388359.postman.co/workspace/inf25dw1g05~1a067a51-05b4-45d2-8050-cf442562ed2d/collection/48609753-a5847d74-763b-4961-be0d-24c9ec8aff98?action=share&source=collection_link&creator=50111863"
+	},
+	"item": [
+		{
+			"name": "teams",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "matches",
+							"item": [
+								{
+									"name": "Listar jogos de uma equipa",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id/matches",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id",
+												"matches"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "30",
+													"description": "ID da equipa da qual obter os jogos"
+												}
+											]
+										},
+										"description": "Obter todos os jogos (passados e futuros) de uma equipa específica."
+									},
+									"response": [
+										{
+											"name": "Lista de jogos da equipa",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/teams/:id/matches",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"teams",
+														":id",
+														"matches"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"home_team_id\": 7381,\n    \"away_team_id\": 2393,\n    \"match_id\": 8946,\n    \"match_date\": \"1951-02-16\",\n    \"venue\": \"string\",\n    \"home_score\": 0,\n    \"away_score\": 0\n  },\n  {\n    \"home_team_id\": 8636,\n    \"away_team_id\": 3499,\n    \"match_id\": 8572,\n    \"match_date\": \"2015-05-31\",\n    \"venue\": \"string\",\n    \"home_score\": 0,\n    \"away_score\": 0\n  }\n]"
+										},
+										{
+											"name": "Equipa não encontrada",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/teams/:id/matches",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"teams",
+														":id",
+														"matches"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "players",
+							"item": [
+								{
+									"name": "Listar jogadores de uma equipa",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id/players",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id",
+												"players"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "30",
+													"description": "ID da equipa da qual obter os jogadores"
+												}
+											]
+										},
+										"description": "Obter todos os jogadores de uma equipa específica."
+									},
+									"response": [
+										{
+											"name": "Lista de jogadores da equipa",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/teams/:id/players",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"teams",
+														":id",
+														"players"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"name\": \"string\",\n    \"position\": \"string\",\n    \"nationality\": \"string\",\n    \"team_id\": 5508,\n    \"shirt_number\": 64,\n    \"player_id\": 33\n  },\n  {\n    \"name\": \"string\",\n    \"position\": \"string\",\n    \"nationality\": \"string\",\n    \"team_id\": 9022,\n    \"shirt_number\": 31,\n    \"player_id\": 5511\n  }\n]"
+										},
+										{
+											"name": "Equipa não encontrada",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/teams/:id/players",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"teams",
+														":id",
+														"players"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Ver equipa em específico",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/teams/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teams",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"string\",\n  \"country\": \"string\",\n  \"coach\": \"string\",\n  \"group\": \"string\",\n  \"team_id\": 907\n}"
+								},
+								{
+									"name": "Bad request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "id not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Atualizar Equipa",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Sporting\",\n  \"country\": \"Portugal\",\n  \"coach\": \"Rui Borges\",\n  \"group\": \"A\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teams/:id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teams",
+										":id",
+										""
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "33"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "AeoportoExample01",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"team_id\": 1,\n  \"name\": \"Porto\",\n  \"country\": \"Portugal\",\n  \"coach\": \"Frascesco Farioli\",\n  \"group\": \"A\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "AeoportoExample02",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"team_id\": 2,\n  \"name\": \"Liverpool\",\n  \"country\": \"England\",\n  \"coach\": \"Arne Slot\",\n  \"group\": \"A\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Bad request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"team_id\": 1,\n  \"name\": \"Porto\",\n  \"country\": \"Portugal\",\n  \"coach\": \"Frascesco Farioli\",\n  \"group\": \"A\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "id not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"team_id\": 1,\n  \"name\": \"Porto\",\n  \"country\": \"Portugal\",\n  \"coach\": \"Frascesco Farioli\",\n  \"group\": \"A\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Apagar Equipa",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/teams/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teams",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "id not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/teams/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teams",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Ver equipas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/teams?group=A&coach=Erik ten Hag&country=England",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "group",
+									"value": "A",
+									"description": "Filtrar por grupo da equipa"
+								},
+								{
+									"key": "coach",
+									"value": "Erik ten Hag",
+									"description": "Filtrar por nome do treinador"
+								},
+								{
+									"key": "country",
+									"value": "England"
+								}
+							]
+						},
+						"description": "Ver todas as equipas, sendo possível filtrar!"
+					},
+					"response": [
+						{
+							"name": "Array of Teams model instances",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/teams?country=Portugal&group=A&coach=Ancelotti",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teams"
+									],
+									"query": [
+										{
+											"key": "country",
+											"value": "Portugal",
+											"description": "Filtrar por país da equipa"
+										},
+										{
+											"key": "group",
+											"value": "A",
+											"description": "Filtrar por grupo da equipa"
+										},
+										{
+											"key": "coach",
+											"value": "Ancelotti",
+											"description": "Filtrar por nome do treinador"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"name\": \"string\",\n    \"country\": \"string\",\n    \"coach\": \"string\",\n    \"group\": \"string\",\n    \"team_id\": 552\n  },\n  {\n    \"name\": \"string\",\n    \"country\": \"string\",\n    \"coach\": \"string\",\n    \"group\": \"string\",\n    \"team_id\": 9327\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Criar equipa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"sporting\",\n  \"country\": \"portugal\",\n  \"coach\": \"ruben amorim\",\n  \"group\": \"A\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create a Team model instance",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"country\": \"string\",\n  \"coach\": \"string\",\n  \"group\": \"string\",\n  \"team_id\": 907\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teams",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teams"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name\": \"string\",\n  \"country\": \"string\",\n  \"coach\": \"string\",\n  \"group\": \"string\",\n  \"team_id\": 907\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "players",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "events",
+							"item": [
+								{
+									"name": "Listar Eventos de um jogador específico",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/players/:id/events?type=Goal&match_id=9",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id",
+												"events"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "Goal"
+												},
+												{
+													"key": "match_id",
+													"value": "9"
+												}
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "77",
+													"description": "ID do jogador"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Lista de eventos/acontecimentos do jogador",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/players/:id/events?type=Assist&match_id=8077",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"players",
+														":id",
+														"events"
+													],
+													"query": [
+														{
+															"key": "type",
+															"value": "Assist"
+														},
+														{
+															"key": "match_id",
+															"value": "8077"
+														}
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"match_id\": 3359,\n    \"player_id\": 2171,\n    \"event_type\": \"Goal\",\n    \"minute\": 58,\n    \"event_id\": 8946\n  },\n  {\n    \"match_id\": 3958,\n    \"player_id\": 2905,\n    \"event_type\": \"Red Card\",\n    \"minute\": 3,\n    \"event_id\": 6693\n  }\n]"
+										},
+										{
+											"name": "Jogador não encontrado",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/players/:id/events?type=Assist&match_id=8077",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"players",
+														":id",
+														"events"
+													],
+													"query": [
+														{
+															"key": "type",
+															"value": "Assist"
+														},
+														{
+															"key": "match_id",
+															"value": "8077"
+														}
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Ver jogador em específico",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/players/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"players",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Jogador encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/players/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"string\",\n  \"position\": \"string\",\n  \"nationality\": \"string\",\n  \"team_id\": 3120,\n  \"shirt_number\": 17,\n  \"player_id\": 953\n}"
+								},
+								{
+									"name": "Jogador não encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/players/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Atualizar Jogador",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Rodrigo Mora\",\n  \"position\": \"Forward\",\n  \"nationality\": \"Portugal\",\n  \"team_id\": 30,\n  \"shirt_number\": 86\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/players/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"players",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "870"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Jogador Atualizado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"position\": \"string\",\n  \"nationality\": \"string\",\n  \"team_id\": 3120,\n  \"shirt_number\": 17,\n  \"player_id\": 953\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/players/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"string\",\n  \"position\": \"string\",\n  \"nationality\": \"string\",\n  \"team_id\": 3120,\n  \"shirt_number\": 17,\n  \"player_id\": 953\n}"
+								},
+								{
+									"name": "Jogador não encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"position\": \"string\",\n  \"nationality\": \"string\",\n  \"team_id\": 3120,\n  \"shirt_number\": 17,\n  \"player_id\": 953\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/players/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Apagar Jogador",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/players/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"players",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "No content",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/players/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Jogador não encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/players/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"players",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Ver Jogadores",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/players?position=Midfielder&nationality=Portugal&team_id=30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"players"
+							],
+							"query": [
+								{
+									"key": "position",
+									"value": "Midfielder"
+								},
+								{
+									"key": "nationality",
+									"value": "Portugal"
+								},
+								{
+									"key": "team_id",
+									"value": "30"
+								}
+							]
+						},
+						"description": "Ver todos os jogadores , sendo possível filtrar!"
+					},
+					"response": [
+						{
+							"name": "Lista de jogadores",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/players?position=string&nationality=string&team_id=8077",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"players"
+									],
+									"query": [
+										{
+											"key": "position",
+											"value": "string"
+										},
+										{
+											"key": "nationality",
+											"value": "string"
+										},
+										{
+											"key": "team_id",
+											"value": "8077"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"name\": \"string\",\n    \"position\": \"string\",\n    \"nationality\": \"string\",\n    \"team_id\": 5508,\n    \"shirt_number\": 64,\n    \"player_id\": 33\n  },\n  {\n    \"name\": \"string\",\n    \"position\": \"string\",\n    \"nationality\": \"string\",\n    \"team_id\": 9022,\n    \"shirt_number\": 31,\n    \"player_id\": 5511\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Criar Jogador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Rodrigo Mora\",\n  \"position\": \"Midfielder\",\n  \"nationality\": \"Portugal\",\n  \"team_id\": 30,\n  \"shirt_number\": 86\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/players",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"players"
+							]
+						},
+						"description": "Criar um novo jogador."
+					},
+					"response": [
+						{
+							"name": "Jogador criado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"position\": \"string\",\n  \"nationality\": \"string\",\n  \"team_id\": 3120,\n  \"shirt_number\": 17,\n  \"player_id\": 953\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/players",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"players"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name\": \"string\",\n  \"position\": \"string\",\n  \"nationality\": \"string\",\n  \"team_id\": 3120,\n  \"shirt_number\": 17,\n  \"player_id\": 953\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "matches",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Ver jogo",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/matches/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "90",
+											"description": "ID do jogo"
+										}
+									]
+								},
+								"description": "Obter os detalhes de um jogo (equipas, estádio, data, resultado)."
+							},
+							"response": [
+								{
+									"name": "Detalhes do jogo",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"home_team_id\": 9311,\n  \"away_team_id\": 5063,\n  \"match_id\": 8383,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"string\",\n  \"home_score\": 0,\n  \"away_score\": 0\n}"
+								},
+								{
+									"name": "Jogo não encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Atualizar jogo",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"home_team_id\": 30,\n  \"away_team_id\": 31,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"Estádio do Dragão\",\n  \"home_score\": 10,\n  \"away_score\": 1\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/matches/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "30",
+											"description": "ID do jogo"
+										}
+									]
+								},
+								"description": "Atualizar dados do jogo (venue, match_date ou resultado)."
+							},
+							"response": [
+								{
+									"name": "Jogo atualizado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"home_team_id\": 9311,\n  \"away_team_id\": 5063,\n  \"match_id\": 8383,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"string\",\n  \"home_score\": 0,\n  \"away_score\": 0\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"home_team_id\": 9311,\n  \"away_team_id\": 5063,\n  \"match_id\": 8383,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"string\",\n  \"home_score\": 0,\n  \"away_score\": 0\n}"
+								},
+								{
+									"name": "Jogo não encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"home_team_id\": 9311,\n  \"away_team_id\": 5063,\n  \"match_id\": 8383,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"string\",\n  \"home_score\": 0,\n  \"away_score\": 0\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Remover jogo",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/matches/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "ID do jogo"
+										}
+									]
+								},
+								"description": "Cancelar ou eliminar um jogo."
+							},
+							"response": [
+								{
+									"name": "Jogo removido",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Jogo não encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Criar jogo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"home_team_id\": 30,\n  \"away_team_id\": 31,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"Estádio do Dragão\",\n  \"home_score\": 10,\n  \"away_score\": 0\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							]
+						},
+						"description": "Agendar / criar um novo jogo na competição."
+					},
+					"response": [
+						{
+							"name": "Jogo criado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"home_team_id\": 9311,\n  \"away_team_id\": 5063,\n  \"match_id\": 8383,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"string\",\n  \"home_score\": 0,\n  \"away_score\": 0\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/matches",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"home_team_id\": 9311,\n  \"away_team_id\": 5063,\n  \"match_id\": 8383,\n  \"match_date\": \"2017-01-25\",\n  \"venue\": \"string\",\n  \"home_score\": 0,\n  \"away_score\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Listar jogos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches?group=H&status=finished",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							],
+							"query": [
+								{
+									"key": "team_id",
+									"value": "30",
+									"description": "Filtrar por ID da equipa.",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2023-09-19",
+									"description": "Filtrar por data (YYYY-MM-DD).",
+									"disabled": true
+								},
+								{
+									"key": "group",
+									"value": "H",
+									"description": "Filtrar por grupo"
+								},
+								{
+									"key": "status",
+									"value": "finished",
+									"description": "Estado do jogo - live, finished ou upcoming."
+								}
+							]
+						},
+						"description": "Ver todos os jogos. Permite filtrar por equipa, data, grupo ou estado."
+					},
+					"response": [
+						{
+							"name": "Lista de jogos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/matches?team_id=7772&date=2001-06-02&group=string&status=upcoming",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches"
+									],
+									"query": [
+										{
+											"key": "team_id",
+											"value": "7772",
+											"description": "Filtrar por ID da equipa."
+										},
+										{
+											"key": "date",
+											"value": "2001-06-02",
+											"description": "Filtrar por data (YYYY-MM-DD)."
+										},
+										{
+											"key": "group",
+											"value": "string",
+											"description": "Filtrar por grupo"
+										},
+										{
+											"key": "status",
+											"value": "upcoming",
+											"description": "Estado do jogo - live, finished ou upcoming."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"home_team_id\": 7381,\n    \"away_team_id\": 2393,\n    \"match_id\": 8946,\n    \"match_date\": \"1951-02-16\",\n    \"venue\": \"string\",\n    \"home_score\": 0,\n    \"away_score\": 0\n  },\n  {\n    \"home_team_id\": 8636,\n    \"away_team_id\": 3499,\n    \"match_id\": 8572,\n    \"match_date\": \"2015-05-31\",\n    \"venue\": \"string\",\n    \"home_score\": 0,\n    \"away_score\": 0\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "{event_id}",
+					"item": [
+						{
+							"name": "Atualizar evento",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"match_id\": 90,\n  \"player_id\": 798,\n  \"event_type\": \"Yellow Card\",\n  \"minute\": 88\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/events/:event_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"events",
+										":event_id"
+									],
+									"variable": [
+										{
+											"key": "event_id",
+											"value": "928",
+											"description": "ID do evento"
+										}
+									]
+								},
+								"description": "Corrigir um evento existente (ex. VAR altera tipo ou minuto)."
+							},
+							"response": [
+								{
+									"name": "Evento atualizado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"match_id\": 7248,\n  \"player_id\": 9528,\n  \"event_type\": \"Goal\",\n  \"minute\": 22,\n  \"event_id\": 5490\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/events/:event_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"events",
+												":event_id"
+											],
+											"variable": [
+												{
+													"key": "event_id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"match_id\": 7248,\n  \"player_id\": 9528,\n  \"event_type\": \"Goal\",\n  \"minute\": 22,\n  \"event_id\": 5490\n}"
+								},
+								{
+									"name": "Evento não encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"match_id\": 7248,\n  \"player_id\": 9528,\n  \"event_type\": \"Goal\",\n  \"minute\": 22,\n  \"event_id\": 5490\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/events/:event_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"events",
+												":event_id"
+											],
+											"variable": [
+												{
+													"key": "event_id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Remover evento",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/events/:event_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"events",
+										":event_id"
+									],
+									"variable": [
+										{
+											"key": "event_id",
+											"value": "928",
+											"description": "ID do evento"
+										}
+									]
+								},
+								"description": "Anular um evento (ex. VAR anula um golo ou cartão)."
+							},
+							"response": [
+								{
+									"name": "Evento removido",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/events/:event_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"events",
+												":event_id"
+											],
+											"variable": [
+												{
+													"key": "event_id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Evento não encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/events/:event_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"events",
+												":event_id"
+											],
+											"variable": [
+												{
+													"key": "event_id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Listar eventos do jogo",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/matches/:id/events?type=Goal",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches",
+										":id",
+										"events"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "Goal",
+											"description": "Filtrar por tipo de evento"
+										},
+										{
+											"key": "player_id",
+											"value": "549",
+											"description": "Filtrar por ID do jogador.",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67",
+											"description": "ID do jogo"
+										}
+									]
+								},
+								"description": "Ver a timeline de eventos de um jogo específico."
+							},
+							"response": [
+								{
+									"name": "Lista de eventos do jogo",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id/events?type=Assist&player_id=7772",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id",
+												"events"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "Assist",
+													"description": "Filtrar por tipo de evento"
+												},
+												{
+													"key": "player_id",
+													"value": "7772",
+													"description": "Filtrar por ID do jogador."
+												}
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"match_id\": 3359,\n    \"player_id\": 2171,\n    \"event_type\": \"Goal\",\n    \"minute\": 58,\n    \"event_id\": 8946\n  },\n  {\n    \"match_id\": 3958,\n    \"player_id\": 2905,\n    \"event_type\": \"Red Card\",\n    \"minute\": 3,\n    \"event_id\": 6693\n  }\n]"
+								},
+								{
+									"name": "Jogo não encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id/events?type=Assist&player_id=7772",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id",
+												"events"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "Assist",
+													"description": "Filtrar por tipo de evento"
+												},
+												{
+													"key": "player_id",
+													"value": "7772",
+													"description": "Filtrar por ID do jogador."
+												}
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Criar evento do jogo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"match_id\": 67,\n  \"player_id\": 549,\n  \"event_type\": \"Red Card\",\n  \"minute\": 88\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/matches/:id/events",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"matches",
+										":id",
+										"events"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "90",
+											"description": "ID do jogo"
+										}
+									]
+								},
+								"description": "Registar um novo evento (golo, cartão, assistência) no jogo."
+							},
+							"response": [
+								{
+									"name": "Evento criado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"match_id\": 7248,\n  \"player_id\": 9528,\n  \"event_type\": \"Goal\",\n  \"minute\": 22,\n  \"event_id\": 5490\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id/events",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id",
+												"events"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"match_id\": 7248,\n  \"player_id\": 9528,\n  \"event_type\": \"Goal\",\n  \"minute\": 22,\n  \"event_id\": 5490\n}"
+								},
+								{
+									"name": "Jogo não encontrado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"match_id\": 7248,\n  \"player_id\": 9528,\n  \"event_type\": \"Goal\",\n  \"minute\": 22,\n  \"event_id\": 5490\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/matches/:id/events",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"matches",
+												":id",
+												"events"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "standings",
+			"item": [
+				{
+					"name": "Obter classificação (standings)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/standings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"standings"
+							],
+							"query": [
+								{
+									"key": "group",
+									"value": "d",
+									"description": "Filtrar por grupo",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Calcular e devolver a tabela de classificação por grupo."
+					},
+					"response": [
+						{
+							"name": "Tabela de classificação",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/standings?group=string",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"standings"
+									],
+									"query": [
+										{
+											"key": "group",
+											"value": "string",
+											"description": "Filtrar por grupo"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"team_id\": 7169,\n    \"team_name\": \"string\",\n    \"points\": 1296,\n    \"goal_difference\": 8228\n  },\n  {\n    \"team_id\": 6275,\n    \"team_name\": \"string\",\n    \"points\": 5305,\n    \"goal_difference\": 7883\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "stats",
+			"item": [
+				{
+					"name": "top-scorers",
+					"item": [
+						{
+							"name": "Melhores marcadores",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/stats/top-scorers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"stats",
+										"top-scorers"
+									]
+								},
+								"description": "Lista dos jogadores com mais golos."
+							},
+							"response": [
+								{
+									"name": "Lista de melhores marcadores",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/stats/top-scorers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"stats",
+												"top-scorers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"player_id\": 9823,\n    \"player_name\": \"string\",\n    \"value\": 8323\n  },\n  {\n    \"player_id\": 8389,\n    \"player_name\": \"string\",\n    \"value\": 9138\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "top-assists",
+					"item": [
+						{
+							"name": "Melhores assistências",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/stats/top-assists",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"stats",
+										"top-assists"
+									]
+								},
+								"description": "Lista dos jogadores com mais assistências."
+							},
+							"response": [
+								{
+									"name": "Lista de melhores assistentes",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/stats/top-assists",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"stats",
+												"top-assists"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"player_id\": 9823,\n    \"player_name\": \"string\",\n    \"value\": 8323\n  },\n  {\n    \"player_id\": 8389,\n    \"player_name\": \"string\",\n    \"value\": 9138\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "discipline",
+					"item": [
+						{
+							"name": "Estatísticas disciplinares",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/stats/discipline",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"stats",
+										"discipline"
+									]
+								},
+								"description": "Jogadores com mais cartões (amarelos/vermelhos)."
+							},
+							"response": [
+								{
+									"name": "Estatísticas disciplinares",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/stats/discipline",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"stats",
+												"discipline"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"player_id\": 9823,\n    \"player_name\": \"string\",\n    \"value\": 8323\n  },\n  {\n    \"player_id\": 8389,\n    \"player_name\": \"string\",\n    \"value\": 9138\n  }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "0000",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "root",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "basePath",
+			"value": "/"
+		},
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
